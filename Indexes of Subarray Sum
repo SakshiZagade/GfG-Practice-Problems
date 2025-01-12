@@ -1,0 +1,57 @@
+//{ Driver Code Starts
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+public:
+    void subarraySum(int num[], int t, int target) {
+        // code here
+       
+        for (int i = 0; i < t; i++) {
+            int sum = 0;
+            for (int j = i; j < t; j++) {
+
+                sum += num[j];
+                if (sum == target)
+                {
+                    cout << i << j;
+                    return;
+                }
+            }
+
+        }
+        cout << 0;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main()
+{
+    int i,t,*num;
+    cout << "enter num of ele: ";
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        
+        int d;
+        num = new int[t];
+        for (int i = 0; i <= t; i++) {
+            cin >> num[i];
+       }
+        
+        cout << "Enter sum :";
+        cin >> d;
+       
+
+        Solution ob;
+        ob.subarraySum(num,t, d);
+       
+    }
+    return 0;
+}
+
+
