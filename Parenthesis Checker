@@ -1,0 +1,60 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+
+class Solution {
+  public:
+    bool isParenthesisBalanced(string& s) {
+        // code here
+        unordered_map<char, char> bracketMap = {
+            {')', '('},
+            {'}', '{'},
+            {']', '['}
+        };
+
+        stack<char> stk; // Stack to store the opening brackets
+
+        for (char ch : s) {
+            // If it's a closing bracket
+            if (bracketMap.count(ch)) {
+                // Check if the stack is not empty and the top of the stack matches
+                if (!stk.empty() && stk.top() == bracketMap[ch]) {
+                    stk.pop(); // Remove the matched opening bracket
+                } else {
+                    return false; // Mismatch or stack is empty
+                }
+            } else {
+                // It's an opening bracket, push it onto the stack
+                stk.push(ch);
+            }
+        }
+
+        // If the stack is empty, all brackets are balanced
+        return stk.empty();
+        
+        
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    string a;
+    cin >> t;
+    while (t--) {
+        cin >> a;
+        Solution obj;
+        if (obj.isParenthesisBalanced(a))
+            cout << "true" << endl;
+        else
+            cout << "false" << endl;
+
+        cout << "~"
+             << "\n";
+    }
+}
+// } Driver Code Ends
