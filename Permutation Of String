@@ -1,0 +1,56 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+     void generatePermutations(string &s, int index, set<string> &result) {
+        if (index == s.size()) {
+            result.insert(s);  // Insert into set to handle duplicates
+            return;
+        }
+
+        for (int i = index; i < s.size(); i++) {
+            swap(s[index], s[i]);                // Swap characters
+            generatePermutations(s, index + 1, result);  // Recursive call
+            swap(s[index], s[i]);                // Backtrack
+        }
+    }
+    vector<string> findPermutation(string &s) {
+        // Code here there
+        set<string> result;  // Using a set to store unique permutations
+        generatePermutations(s, 0, result);
+
+        // Convert set to vector
+        return vector<string>(result.begin(), result.end());
+        
+    }
+
+    
+};
+
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string S;
+        cin >> S;
+        Solution ob;
+        vector<string> ans = ob.findPermutation(S);
+        sort(ans.begin(), ans.end());
+        for (auto i : ans) {
+            cout << i << " ";
+        }
+        cout << "\n";
+
+        cout << "~"
+             << "\n";
+    }
+    return 0;
+}
+
+// } Driver Code Ends
