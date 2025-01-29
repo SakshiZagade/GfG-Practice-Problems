@@ -1,0 +1,55 @@
+//{ Driver Code Starts
+// Initial Template for C++
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+class Solution {
+  public:
+      double power(double b, int e) {
+        // If exponent is 0, return 1 (since b^0 = 1 for any b)
+        if (e == 0) return 1;
+        
+        double result = 1;
+        long long exp = e;  // To handle negative exponents correctly
+        
+        // If exponent is negative, take reciprocal of base
+        if (exp < 0) {
+            b = 1 / b;
+            exp = -exp;  // Make exponent positive
+        }
+        
+        // Multiply the base by itself exponent times
+        while (exp > 0) {
+            if (exp % 2 == 1) {
+                result *= b;  // If exponent is odd, multiply base
+            }
+            b *= b;  // Square the base
+            exp /= 2;  // Halve the exponent
+        }
+        
+        return result;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    cout << fixed << setprecision(5);
+    int t;
+    cin >> t;
+    while (t--) {
+        double b;
+        cin >> b;
+        int e;
+        cin >> e;
+        Solution ob;
+        cout << ob.power(b, e) << endl;
+        cout << "~" << endl;
+    }
+
+    return 0;
+}
+// } Driver Code Ends
